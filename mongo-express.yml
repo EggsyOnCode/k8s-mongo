@@ -35,3 +35,20 @@ spec:
                 configMapKeyRef:
                   name: mongodb-configmap
                   key: database_url
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-express-service
+spec:
+  selector:
+    app: mongo-express
+  # a type needs to be added to inform k8 that this service is external which will assign an external ip to mongo-express pod
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
+      # nodePort is the port accessible from the internet to interact with this pod
+      # must be between 30k and 65k
+      nodePort: 30000
