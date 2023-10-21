@@ -12,8 +12,7 @@ An exercise in building a minikube Kubernetes cluster comprising of
 
 ## Steps to deploy
 - Setup a mongo-secrets.yaml file having the follwoing format
-
-  ```yaml
+```yaml
 apiVersion: v1
 kind: Secret
 metadata:
@@ -22,10 +21,20 @@ type: Opaque
 data:
   # data needs to be inputted in base64 form
   # on unix; type echo -n 'textToBeEncoded' | base64
-  mongo-root-username: # the username
-  mongo-root-password: # the pwd
-``
-
+  mongo-root-username: # ur username
+  mongo-root-password: # ur pwd
+```
+- Create the secrets file using
+```bash
+kubectl apply -f mongo-secrets.yaml
+```
+- Create mongo.yaml using kubectl apply
+- Create mongo-configMap.yaml
+- Create mongo-express.yaml
+- Start minikube service using
+```bash
+minikube service mongo-express-service
+```
 
 
 ## Connection and Execution
